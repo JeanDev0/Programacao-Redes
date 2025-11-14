@@ -1,6 +1,20 @@
 import customtkinter
 from CTkMessagebox import CTkMessagebox
 import socket
+import threading
+
+def receber_mensagem():
+    global cliente
+    
+    while True:
+        try: 
+            mensagem = cliente.recv (10000).decode()
+            memo_mensagens.configure(state = "normal")
+            memo_mensagens.insert("end",mensagem +"\n")
+            memo_mensagens.see("end")
+            memo_mensagens.configure(state = "disable")
+        except Exception as e:
+            pass
 
 def conectar():
     global nome
@@ -14,9 +28,17 @@ def conectar():
     try:
         cliente = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         cliente.connect(("192.168.56.1", 5000))
+
+        campo_mensagem.configure(state="normal")
+        botao_enviar.configure(state="normal")
+        botao_conectar.configure(state="disable")
+        campo_nome.configure(state="disable")
+
+        thread = threading.Thread(target=receber_mensagem)
+        thread.start()
         
     except Exception as e:
-        print("Erro na recepção da mensagem", e)
+        CTkMessagebox(title="Erro", message="Erro na conexão", icon="Warning")
 
 customtkinter.set_appearance_mode("dark")
 
