@@ -14,7 +14,8 @@ def conectar():
     try:
         cliente = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         cliente.connect(("192.168.56.1", 5000))
-
+    except Exception as e:
+        print("Erro na recepção da mensagem", e)
 
 customtkinter.set_appearance_mode("dark")
 
