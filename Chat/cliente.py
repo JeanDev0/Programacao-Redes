@@ -1,13 +1,20 @@
 import customtkinter
 from CTkMessagebox import CTkMessagebox
+import socket
 
 def conectar():
     global nome
     global cliente
     nome_valor = campo_nome.get().strip()
     if nome_valor is None or nome_valor == "":
-        CTkMessagebox(title="Erro", message="Antes, Digite seu nome", icon="warning")
+        CTkMessagebox(title="Erro", message="Antes, digite seu nome", icon="warning")
         return
+    nome = nome_valor
+
+    try:
+        cliente = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        cliente.connect(("192.168.56.1", 5000))
+
 
 customtkinter.set_appearance_mode("dark")
 
