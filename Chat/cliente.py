@@ -38,7 +38,7 @@ def conectar():
         thread.start()
         
     except Exception as e:
-        CTkMessagebox(title="Erro", message="Erro na conexão", icon="Warning")
+        CTkMessagebox(title="Erro", message="Erro na conexão", icon="warning")
 
 customtkinter.set_appearance_mode("dark")
 
