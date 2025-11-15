@@ -95,6 +95,11 @@ frame.pack(fill="x", padx=10, pady=(0,10))
 campo_mensagem = customtkinter.CTkEntry(frame, state="disabled")
 campo_mensagem.pack(side="left", fill="x", expand=True, padx=(0,10))
 
+def funcao_campo_mensagem(event = None):
+    enviar_mensagem()
+    
+campo_mensagem.bind ("<return>", funcao_campo_mensagem)
+
 botao_enviar = customtkinter.CTkButton(frame, text="Enviar", 
                                        command=enviar_mensagem, state="disabled")
 botao_enviar.pack(side="right")
