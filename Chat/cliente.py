@@ -52,7 +52,7 @@ def conectar():
 
     try:
         cliente = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        cliente.connect(("192.168.56.1", 5000))
+        cliente.connect(("10.209.1.28", 5000))
 
         campo_mensagem.configure(state = "normal")
         botao_enviar.configure(state = "normal")
